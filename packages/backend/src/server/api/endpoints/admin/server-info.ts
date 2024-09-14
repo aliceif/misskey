@@ -135,8 +135,8 @@ export default class extends Endpoint<typeof meta, typeof paramDef> { // eslint-
 					total: memStats.total,
 				},
 				fs: {
-					total: fsStats[0].size,
-					used: fsStats[0].used,
+					total: fsStats.map(fs => fs.size).reduce((acc, size) => acc + size),
+					used: fsStats.map(fs => fs.used).reduce((acc, size) => acc + size),
 				},
 				net: {
 					interface: netInterface,
