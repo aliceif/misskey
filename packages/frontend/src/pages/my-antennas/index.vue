@@ -34,7 +34,7 @@ import { definePage } from '@/page.js';
 import { antennasCache } from '@/cache.js';
 import { infoImageUrl } from '@/instance.js';
 
-const antennas = computed(() => antennasCache.value.value ?? []);
+const antennas = computed(() => (antennasCache.value.value ?? []).sort((x, y) => x.name.localeCompare(y.name)));
 
 function fetch() {
 	antennasCache.fetch();
