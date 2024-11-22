@@ -107,7 +107,7 @@ const withSensitive = computed<boolean>({
 const showFixedPostForm = prefer.model('showFixedPostForm');
 
 async function chooseList(ev: PointerEvent): Promise<void> {
-	const lists = await userListsCache.fetch();
+	const lists = (await userListsCache.fetch()).sort((x, y) => x.name.localeCompare(y.name));
 	const items: (MenuItem | undefined)[] = [
 		...lists.map(list => ({
 			type: 'link' as const,
@@ -126,7 +126,7 @@ async function chooseList(ev: PointerEvent): Promise<void> {
 }
 
 async function chooseAntenna(ev: PointerEvent): Promise<void> {
-	const antennas = await antennasCache.fetch();
+	const antennas = (await antennasCache.fetch()).sort((x, y) => x.name.localeCompare(y.name));
 	const items: (MenuItem | undefined)[] = [
 		...antennas.map(antenna => ({
 			type: 'link' as const,
